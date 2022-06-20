@@ -102,13 +102,132 @@ document.getElementById("app").innerHTML = `
 //   });
 // };
 
-String.prototype.toJadenCase = function () {
-  return this.split(" ").map((elem) => {
-    console.log(elem.substring(1, 100), "sub");
-    return elem.charAt(0).toUpperCase() + elem.slice(1);
-  });
-};
+// String.prototype.toJadenCase = function () {
+//   return this.split(" ").map((elem) => {
+//     console.log(elem.substring(1, 100), "sub");
+//     return elem.charAt(0).toUpperCase() + elem.slice(1);
+//   });
+// };
 
-let a = "How can mirrors can be real if our eyes aren't real";
+// let a = "How can mirrors can be real if our eyes aren't real";
 
-console.log(a.toJadenCase());
+// console.log(a.toJadenCase());
+
+// debugger;
+// function duplicateEncode(word) {
+//   let ar = word.split("");
+//   let res = [];
+//   ar.map((elem, index, arr) => {
+//     if (
+//       arr.includes(elem.toLowerCase(), index == arr.length - 1 ? 0 : index + 1)
+//     ) {
+//       if (arr.includes(elem.toLowerCase(), index + 1)) {
+//         res.push("(");
+//       } else {
+//         res.push(")");
+//       }
+//     } else {
+//       res.push("(");
+//     }
+//   });
+
+//   return res.join("");
+// }
+
+// duplicateEncode("din"); //  "((("
+// duplicateEncode("recede"); // "()()()"
+// duplicateEncode("Success"); //")())())"
+
+// function duplicateEncode(word) {
+//   let ar = word.split("");
+//   let res = [];
+
+//   for (let i = 0; i < ar.length; i++) {
+//     let element = ar[i];
+//     let origin = 0;
+//     for (let k = 0; k < ar.length; k++) {
+//       if (element.toLowerCase() == ar[k].toLowerCase()) {
+//         origin++;
+//       }
+//     }
+//     origin > 1 ? res.push(")") : res.push("(");
+//   }
+//   return res.join("");
+// }
+// debugger;
+// function duplicateEncode(string) {
+//   var occurances = string
+//     .toLowerCase()
+//     .split("")
+//     .reduce(function (prev, curr, index, arr) {
+//       if (prev[curr] == undefined) {
+//         prev[curr] = 1;
+//       } else {
+//         prev[curr] += 1;
+//       }
+
+//       return prev;
+
+//       // occ[cha] = (occ[cha] || 0) + 1;
+//       // return occ;
+//     }, {});
+//   // return string.toLowerCase().replace(/[\S\s]/g, function (cha) {
+//   //   return occurances[cha] > 1 ? ")" : "(";
+//   // });
+
+//   return string.toLowerCase().replace(/[a-zA-Z]/gi, (el) => {
+//     return occurances[el] > 1 ? ")" : "(";
+//   });
+// }
+
+// console.log(duplicateEncode("Success"));
+
+// function gogo(st) {
+//   let res = st.split("").reduce(function (e, i) {
+//     console.log(e, "e");
+//     console.log(i, "i");
+//   });
+// }
+
+// console.log(gogo("mother"));
+
+// let b = {
+//   c: 12
+// };
+
+// console.log(b.c);
+// b.c = 123;
+// console.log(b.c);
+
+function highAndLow(numbers) {
+  let res = numbers
+    .split(" ")
+    .sort((a, b) => a - b)
+    .filter((elem, index, arr) => {
+      //return (index == 0) | (index == arr.length - 1) ? elem : null;
+      console.log(arr.length, "arr");
+      if (arr.length == 1) {
+        return elem;
+      }
+
+      if (index == 0) {
+        console.log("0000");
+
+        return elem;
+      }
+      if (index == arr.length - 1) {
+        console.log("1111");
+        return elem;
+      }
+    });
+
+  if (res.length == 1) {
+    res.push(res[0]);
+  }
+
+  return res.reverse().join(" ");
+}
+
+//highAndLow("8 3 -5 42 -1 0 0 -9 4 7 4 -4"); // "42 -9"
+
+console.log(highAndLow("42"));
