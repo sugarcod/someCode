@@ -199,35 +199,76 @@ document.getElementById("app").innerHTML = `
 // b.c = 123;
 // console.log(b.c);
 
-function highAndLow(numbers) {
-  let res = numbers
-    .split(" ")
-    .sort((a, b) => a - b)
-    .filter((elem, index, arr) => {
-      //return (index == 0) | (index == arr.length - 1) ? elem : null;
-      console.log(arr.length, "arr");
-      if (arr.length == 1) {
-        return elem;
-      }
+// function highAndLow(numbers) {
+//   let res = numbers
+//     .split(" ")
+//     .sort((a, b) => a - b)
+//     .filter((elem, index, arr) => {
+//       //return (index == 0) | (index == arr.length - 1) ? elem : null;
+//       console.log(arr.length, "arr");
+//       if (arr.length == 1) {
+//         return elem;
+//       }
 
-      if (index == 0) {
-        console.log("0000");
+//       if (index == 0) {
+//         console.log("0000");
 
-        return elem;
-      }
-      if (index == arr.length - 1) {
-        console.log("1111");
-        return elem;
-      }
-    });
+//         return elem;
+//       }
+//       if (index == arr.length - 1) {
+//         console.log("1111");
+//         return elem;
+//       }
+//     });
 
-  if (res.length == 1) {
-    res.push(res[0]);
-  }
+//   if (res.length == 1) {
+//     res.push(res[0]);
+//   }
 
-  return res.reverse().join(" ");
-}
+//   return res.reverse().join(" ");
+// }
 
 //highAndLow("8 3 -5 42 -1 0 0 -9 4 7 4 -4"); // "42 -9"
 
-console.log(highAndLow("42"));
+// console.log(highAndLow("42"));
+
+// function XO(str) {
+//   let arxo = str
+//     .toLowerCase()
+//     .split("")
+//     .reduce((prev, curr, index, arr) => {
+//       if (prev[curr] == undefined) {
+//         prev[curr] = 1;
+//       } else {
+//         prev[curr] += 1;
+//       }
+//       console.log(prev, ";prev");
+
+//       return prev;
+//     }, {});
+//   if (arxo.x == arxo.o) {
+//     return true;
+//   }
+//   return false;
+// }
+
+// function XO(str) {
+//   let x = str.match(/x/gi);
+//   let o = str.match(/o/gi);
+//   console.log(x, "x");
+//   console.log(o, "o");
+// }
+
+// console.log(XO("xxOox")); //true
+
+function getSum(a, b) {
+  let sum = 0;
+  let from = a > b ? b : a;
+  let to = from == a ? b : a;
+  for (let i = from; i <= to; i++) {
+    sum += i;
+  }
+  return sum;
+}
+
+console.log(getSum(199, -240));
