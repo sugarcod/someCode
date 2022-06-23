@@ -236,3 +236,18 @@ document.getElementById("app").innerHTML = `
 // console.log(a, "a");
 
 // console.log(seven(times(five()))); //, 35
+
+let alphabet = "abcdefghijklmnopqrstuvwxyz";
+function alphabetPosition(text) {
+  return text
+    .toLowerCase()
+    .split("")
+    .map((element, index) => {
+      return alphabet.indexOf(element, 0) + 1;
+    })
+    .filter((x) => x > 0)
+    .join(" ");
+}
+
+console.log(alphabetPosition("The sunset sets at twelve o' clock."));
+//"20 8 5 19 21 14 19 5 20 19 5 20 19 1 20 20 23 5 12 22 5 15 3 12 15 3 11")
