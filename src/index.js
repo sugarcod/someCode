@@ -237,17 +237,152 @@ document.getElementById("app").innerHTML = `
 
 // console.log(seven(times(five()))); //, 35
 
-let alphabet = "abcdefghijklmnopqrstuvwxyz";
-function alphabetPosition(text) {
-  return text
-    .toLowerCase()
-    .split("")
-    .map((element, index) => {
-      return alphabet.indexOf(element, 0) + 1;
-    })
-    .filter((x) => x > 0)
-    .join(" ");
+// let alphabet = "abcdefghijklmnopqrstuvwxyz";
+// function alphabetPosition(text) {
+//   return text
+//     .toLowerCase()
+//     .split("")
+//     .map((element, index) => {
+//       return alphabet.indexOf(element, 0) + 1;
+//     })
+//     .filter((x) => x > 0)
+//     .join(" ");
+// }
+
+// console.log(alphabetPosition("The sunset sets at twelve o' clock."));
+//"20 8 5 19 21 14 19 5 20 19 5 20 19 1 20 20 23 5 12 22 5 15 3 12 15 3 11")
+
+// String.prototype.toJadenCase = function () {
+//   return this.split(" ")
+//     .map((elem, index) =>
+//       elem
+//         .split("")
+//         .map((x, i) => (i == 0 ? x.toUpperCase() : x))
+//         .join("")
+//     )
+//     .join(" ");
+// };
+
+// String.prototype.toJadenCase = function () {
+//   return this.replace(/^| [a-z]/gm, (str) => str.toUpperCase());
+// };
+
+// let a = "How can mirrors be real if our eyes aren't real";
+// console.log(a.toJadenCase(), "res"); //
+// "How Can Mirrors Be Real If Our Eyes Aren't Real"
+debugger;
+// function solution(list) {
+//   let res = [];
+
+//   for (let i = 0; i < list.length; i++) {
+//     let elem = list[i];
+//     if (i === 0) {
+//       res.push(elem);
+//       continue;
+//     }
+
+//     if (elem - 1 === list[i - 1] && elem + 1 == list[i + 1]) {
+//       res.push("-");
+//       continue;
+//     }
+//     res.push(elem);
+//   }
+//   return res;
+// }
+
+// function solution(list) {
+//   let res = "";
+
+//   for (let i = 0; i < list.length; i++) {
+//     let elem = list[i];
+//     if (i === 0) {
+//       res += elem;
+//       continue;
+//     }
+//     if (elem - 1 === list[i - 1] && elem + 1 == list[i + 1]) {
+//       if (res[res.length - 1] != "-") {
+//         res += "-";
+//       }
+//       continue;
+//     }
+//     if (res[res.length - 1] != "-") {
+//       res += "," + elem;
+//     } else {
+//       res += elem;
+//     }
+//   }
+//   return res;
+// }
+
+//TEST
+// solution = (list) =>
+//   list.reduce((acc, curr, i) => {
+//     if (i == 0) return curr.toString();
+//     if (list[i - 1] == curr - 1 && list[i + 1] == curr + 1) return acc;
+//     if (list[i - 2] == curr - 2 && list[i - 1] == curr - 1)
+//       return acc + "-" + curr;
+//     return acc + "," + curr;
+//   });
+
+// function solution(list) {
+//   return list
+//     .reduce((acc, n, i, arr) => {
+//       if (n !== arr[i - 1] + 1) {
+//         acc.push([n]);
+//       } else {
+//         acc[acc.length - 1].push(n);
+//       }
+//       return acc;
+//     }, [])
+//     .map((arr) => (arr.length > 2 ? `${arr[0]}-${arr[arr.length - 1]}` : arr))
+//     .join(",");
+// }
+
+// function solution(nums) {
+//   nums = nums.map((v, i) =>
+//     nums[i - 1] == v - 1 && nums[i + 1] == v + 1 ? "-" : v
+//   );
+//   return nums
+//     .filter((v, i) => v != "-" || nums[i - 1] != "-")
+//     .join(",")
+//     .replace(/,-,/g, "-");
+// }
+
+// const solution = (list) =>
+//   list
+//     .map((val, idx) =>
+//       list[idx - 1] === val - 1 && list[++idx] === val + 1 ? `~` : val
+//     )
+//     .join(`,`)
+//     .replace(/,?(~,)+/g, `-`);
+
+// function solution(list) {
+//   return list
+//     .map((num, i) => {
+//       let next = list[i + 1],
+//         previous = list[i - 1];
+//       return Math.abs(next - num) == 1 && Math.abs(num - previous) == 1
+//         ? "-"
+//         : num;
+//     })
+//     .toString()
+//     .replace(/(,-)+,/g, "-");
+// }
+
+// console.log(solution([0, 1, 3, 4, 5, 7, 8, 9, 10, 11, 14, 15, 17, 18, 19, 20]));
+// returns "-10--8,-6,-3-1,3-5,7-11,14,15,17-20"
+
+// 0,1,3-5,7-11,14,15,17-20
+
+function anagrams(word, words) {
+  let res = words.map((el) => {
+    return el.split("").reduce((prev, curr, arr) => {
+
+    }
+  });
+
+  return res;
 }
 
-console.log(alphabetPosition("The sunset sets at twelve o' clock."));
-//"20 8 5 19 21 14 19 5 20 19 5 20 19 1 20 20 23 5 12 22 5 15 3 12 15 3 11")
+console.log(anagrams("abba", ["aabb", "abcd", "bbaa", "dada"]));
+//, ['aabb', 'bbaa']
