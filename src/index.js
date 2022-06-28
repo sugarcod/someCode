@@ -270,7 +270,7 @@ document.getElementById("app").innerHTML = `
 // let a = "How can mirrors be real if our eyes aren't real";
 // console.log(a.toJadenCase(), "res"); //
 // "How Can Mirrors Be Real If Our Eyes Aren't Real"
-debugger;
+
 // function solution(list) {
 //   let res = [];
 
@@ -373,16 +373,46 @@ debugger;
 // returns "-10--8,-6,-3-1,3-5,7-11,14,15,17-20"
 
 // 0,1,3-5,7-11,14,15,17-20
+// debugger;
+// function anagrams(word, words) {
+//   let ob = word.split("").reduce((prev, curr) => {
+//     if (prev[curr]) {
+//       prev[curr] = prev[curr] + 1;
+//     } else {
+//       prev[curr] = 1;
+//     }
+//     return prev;
+//   }, {});
+//   let res = words.map((el, i) => {
+//     return el.split("").reduce((prev, curr, index, arr) => {
+//       if (prev[curr]) {
+//         prev[curr] = prev[curr] + 1;
+//       } else {
+//         prev[curr] = 1;
+//       }
+//       return prev;
+//     }, {});
+//   });
+
+//   console.log(res, "res");
+//   console.log(ob, "ob");
+// }
 
 function anagrams(word, words) {
-  let res = words.map((el) => {
-    return el.split("").reduce((prev, curr, arr) => {
-
+  let st = word.split("").sort();
+  return words.filter((el, i) => {
+    // if (el === word) return false;
+    el = el.split("").sort();
+    for (let i = 0; i < el.length; i++) {
+      let curr = el[i];
+      let dn = st[i];
+      if (curr !== dn) return false;
     }
+    return el;
   });
-
-  return res;
 }
 
-console.log(anagrams("abba", ["aabb", "abcd", "bbaa", "dada"]));
-//, ['aabb', 'bbaa']
+console.log(anagrams("racer", ["crazer", "carer", "racar", "caers", "racer"]));
+//, ['aabb', 'bbaa'])
+
+//['carer', 'racer']
