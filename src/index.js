@@ -171,27 +171,69 @@ document.getElementById("app").innerHTML = `
 //     .replace(/0/g, "");
 
 // Expected: 'E', instead got: 'T'
+let res = [];
+let addEnd = (num, arr) => {
+  arr.push(num);
+};
 
 let snail = function (a) {
-  console.log(a, a.length, "array");
-  let res = [];
-
-  for (let i = 0; i < a.length; i++) {
-    const element = a[i];
-    for (let k = 0; k < array.length; k++) {
-      const element = array[k];
+  if (Array.isArray(a)) {
+    if (a.length == 0) {
+      return [];
     }
+  }
+  let down = true;
+  let inno = 0;
+  function go(index) {
+    for (let i = index; i < a.length; i++) {
+      const element = a[i];
+      down && i == 0 ? addEnd(element, res) : null;
+      down && (i > 0) & (i < a.length - 1)
+        ? addEnd(element[a.length - 1], res)
+        : null;
+      if (down && i == a.length - 1) {
+        for (let i = element.length - 1; i >= 0; i--) {
+          addEnd(element[i], res);
+        }
+        down = false;
+        inno++;
+      }
+    }
+    if (!down) {
+      for (let i = a.length - 2; i >= 1; i--) {
+        addEnd(a[i][inno], res);
+      }
+    }
+    console.log("end");
+  }
+  if (inno < a.length) {
+    console.log("start");
+    go(inno);
   }
   return res;
 };
 
 console.log(
   snail([
-    [1, 2, 3],
-    [4, 5, 6],
-    [7, 8, 9]
+    [1, 2, 3, 4, 5, 6],
+    [20, 21, 22, 23, 24, 7],
+    [19, 32, 33, 34, 25, 8],
+    [18, 31, 36, 35, 26, 9],
+    [17, 30, 29, 28, 27, 10],
+    [16, 15, 14, 13, 12, 11]
   ])
 );
-//[1, 2, 3, 6, 9, 8, 7, 4, 5]
 
 //https://www.codewars.com/kata/521c2db8ddc89b9b7a0000c1/train/javascript
+
+//(snail([[]]), []);
+//snail([[1]]), [1]);
+
+//  snail([
+//       [1, 2, 3, 4, 5, 6],
+//       [20, 21, 22, 23, 24, 7],
+//       [19, 32, 33, 34, 25, 8],
+//       [18, 31, 36, 35, 26, 9],
+//       [17, 30, 29, 28, 27, 10],
+//       [16, 15, 14, 13, 12, 11]
+//     ]),
