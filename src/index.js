@@ -227,38 +227,59 @@ document.getElementById("app").innerHTML = `
 //       [16, 15, 14, 13, 12, 11]
 //     ]),
 
+// let snail = (arr) => {
+//   let res = [];
+//   let row = 1;
+//   let count = arr.length;
+
+//   for (let i = 0; i < count; i++) {
+//     for (let k = 0; k < arr.length; k++) {
+//       let yes = true;
+//       //console.log(arr[k], k, i, "arr[k]");
+
+//       if (k == i) {
+//         if (k == 0) {
+//           res.push(arr[k].slice(k, arr.length));
+//         } else {
+//           res.push(arr[k].slice(k, arr.length - k));
+//         }
+//       }
+
+//       if (k == arr.length - row) {
+//         res.push(arr[k].slice(0, arr.length - row));
+//       }
+//       if (k !== i && k !== arr.length - row) {
+//         res.push(arr[k][arr.length - row]);
+//       }
+//     }
+//     row++;
+//   }
+
+//   return res;
+// };
+debugger;
 let snail = (arr) => {
-  let res = [];
-  let row = 1;
   let count = arr.length;
+  let res = [];
 
   for (let i = 0; i < count; i++) {
-    for (let k = 0; k < arr.length; k++) {
-      let yes = true;
-      //console.log(arr[k], k, i, "arr[k]");
-
-      if (k == i) {
-        if (k == 0) {
-          res.push(arr[k].slice(k, arr.length));
-        } else {
-          res.push(arr[k].slice(k, arr.length - k));
+    for (let k = i; k < count; k++) {
+      let down = true;
+      if (i == 0) {
+        if (k == 0) res.push(arr[i]);
+        if (k == count - 1) res.push(arr[k].reverse());
+        if (k > 0) {
+          res.push(arr[k][arr[k].length - 1]);
+          down = false;
+        }
+        if (k > 0 && !down) {
+          res.push(arr[k][0]);
         }
       }
 
-      if (k == arr.length - row) {
-        console.log(
-          arr[k].slice(row, arr.length - row),
-          row,
-          "k == arr.length"
-        );
-
-        res.push(arr[k].slice(k, arr.length));
-      }
-      if (k !== i && k !== arr.length - row) {
-        res.push(arr[k][arr.length - row]);
-      }
+      // if (k == i && i > 0) res.push(arr[k].slice(k, count - k));
+      // if (k == count - i && i > 0) res.push(arr[k].slice(i, count - i));
     }
-    row++;
   }
 
   return res;
@@ -274,3 +295,10 @@ console.log(
     [16, 15, 14, 13, 12, 11]
   ])
 );
+/*
+  0  - 5
+ 6 7  - 10 11
+ 12 13 -16 17
+
+
+*/
