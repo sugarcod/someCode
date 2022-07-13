@@ -263,25 +263,27 @@ let snail = (arr) => {
   let res = [];
 
   for (let i = 0; i < count; i++) {
+    let end = [];
     for (let k = i; k < count; k++) {
       let down = true;
       if (i == 0) {
         if (k == 0) res.push(arr[i]);
         if (k == count - 1) res.push(arr[k].reverse());
-        if (k > 0) {
+        if (k > 0 && k != count - 1) {
           res.push(arr[k][arr[k].length - 1]);
-          down = false;
+          end.push(arr[k][0]);
         }
-        if (k > 0 && !down) {
-          res.push(arr[k][0]);
+      } else {
+        if (k == i) {
+          res.push(arr[k].slice(i, count - i));
+          res.push(arr[k][arr[k].length - i + 1]);
+          end.push(arr[k][i]);
         }
+        if (k == count - i + 1) res.push(arr[k].slice(i, count - 1).reverse());
       }
-
-      // if (k == i && i > 0) res.push(arr[k].slice(k, count - k));
-      // if (k == count - i && i > 0) res.push(arr[k].slice(i, count - i));
     }
+    res.push(end.reverse());
   }
-
   return res;
 };
 
