@@ -265,7 +265,6 @@ let snail = (arr) => {
   for (let i = 0; i < count; i++) {
     let end = [];
     for (let k = i; k < count; k++) {
-      let down = true;
       if (i == 0) {
         if (k == 0) res.push(arr[i]);
         if (k == count - 1) res.push(arr[k].reverse());
@@ -276,27 +275,40 @@ let snail = (arr) => {
       } else {
         if (k == i) {
           res.push(arr[k].slice(i, count - i));
-          res.push(arr[k][arr[k].length - i + 1]);
+        }
+        if (k > i && k < count / 2 + 1) {
+          res.push(arr[k][arr[k].length - (i + 1)]);
           end.push(arr[k][i]);
         }
-        if (k == count - i + 1) res.push(arr[k].slice(i, count - 1).reverse());
+        if (k == count - 1 - i && k >= count / 2 + 1) {
+          res.push(arr[k].slice(i, count - i).reverse());
+        }
       }
     }
     res.push(end.reverse());
   }
-  return res;
+  return res.flat();
+  // return res.reduce((prev, curr, index) => {
+  //   if (Array.isArray(curr)) {
+  //     curr.map((e) => prev.push(e));
+  //   } else {
+  //     prev.push(curr);
+  //   }
+  //   return prev;
+  // }, []);
 };
 
 console.log(
   snail([
-    [1, 2, 3, 4, 5, 6],
-    [20, 21, 22, 23, 24, 7],
-    [19, 32, 33, 34, 25, 8],
-    [18, 31, 36, 35, 26, 9],
-    [17, 30, 29, 28, 27, 10],
-    [16, 15, 14, 13, 12, 11]
+    [1, 2, 3, 4, 5],
+    [6, 7, 8, 9, 10],
+    [11, 12, 13, 14, 15],
+    [16, 17, 18, 19, 20],
+    [21, 22, 23, 24, 25]
   ])
 );
+//[1, 2, 3, 4, 5, 10, 15, 20, 25, 24, 23, 22, 21, 16,
+// 11, 6, 7, 8, 9, 14, 19, 18, 17, 12, 13]
 /*
   0  - 5
  6 7  - 10 11
@@ -304,3 +316,6 @@ console.log(
 
 
 */
+
+//Test.assertDeepEquals(snail([[1, 2, 3, 4, 5], [6, 7, 8, 9, 10], [11, 12, 13, 14, 15], [16, 17, 18, 19, 20], [21, 22, 23, 24, 25]]), [1, 2, 3, 4, 5, 10, 15, 20, 25, 24, 23, 22, 21, 16, 11, 6, 7, 8, 9, 14, 19, 18, 17, 12, 13]);
+//Test.assertDeepEquals(snail([[1, 2, 3, 4, 5, 6], [20, 21, 22, 23, 24, 7], [19, 32, 33, 34, 25, 8], [18, 31, 36, 35, 26, 9], [17, 30, 29, 28, 27, 10], [16, 15, 14, 13, 12, 11]]), [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36]);
