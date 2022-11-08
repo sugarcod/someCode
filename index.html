@@ -3,11 +3,92 @@
   <head>
     <title>Parcel Sandbox</title>
     <meta charset="UTF-8" />
+
+    <style>
+      .grid-item {
+        background: green;
+        border: 1px solid red;
+        color: white;
+        font-size: 26px;
+      }
+      .grid-item:nth-child(1){
+        grid-area: 1/1/2/3;
+      }
+      .grid {
+        display: grid;
+        grid-template:repeat(3, 300px)/repeat(3, 1fr);
+        grid-column-gap: 20px;
+        /* grid-template-columns: repeat(5, 1fr);
+        grid-template-rows: repeat(3, 300px); */
+
+        /* place-items: end stretch; */
+        /* align-content: space-between;
+      justify-content: center; */
+
+        /* grid-template-columns: repeat(5, 1fr);
+          grid-template-rows: repeat(3, 100px);
+          grid-template-areas:
+            "logo . . . ."
+            ". . . side side"
+            "foot foot . side side"; */
+
+        /* grid-template:
+          "logo . . . ." 100px
+          ". . . side side" 100px
+          "foot foot . side side" 100px / 100px 100px 100px 100px 100px;
+      } */
+      /*
+      .grid-item:nth-child(1) {
+        background: red;
+        grid-area: logo;
+      }
+      .grid-item:nth-child(2) {
+        background: yellow;
+        grid-area: side;
+      }
+      .grid-item:nth-child(3) {
+        background: green;
+        grid-area: foot;
+        align-self: stretch;
+        justify-self: end;
+      } */
+    </style>
   </head>
 
   <body>
-    <div id="app"></div>
+    <!-- <div id="app"></div> -->
+    <!-- <div class="grid">
+      <div class="logo">
+        LOGOTYPE
+      </div>
+      <div class="gap"></div>
+      <div class="nav">
+        <ul>
+          <li><a href="#">main</a></li>
+          <li><a href="#">sector</a></li>
+          <li><a href="#">about</a></li>
+          <li><a href="#">service</a></li>
+        </ul>
+      </div>
+      <div class="gap"></div>
+      <div class="tel">
+        <a href="">+88009876655</a>
+      </div>
+      <div class="text">
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Asperiores, a
+        aliquid. Illum libero molestiae nemo ipsum, ea saepe dolores. Dolor!`
+      </div>
+    </div> -->
 
+    <div class="grid">
+      <div class="grid-item">1</div>
+      <div class="grid-item">2</div>
+      <div class="grid-item">3</div>
+      <div class="grid-item">4</div>
+      <div class="grid-item">5</div>
+      <div class="grid-item">6</div>
+      <div class="grid-item">7</div>
+    </div>
     <script src="src/index.js"></script>
   </body>
 </html>

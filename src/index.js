@@ -1,13 +1,5 @@
 import "./styles.css";
-
-document.getElementById("app").innerHTML = `
-<h1>Hello Vanilla!</h1>
-<div>
-  We use the same configuration as Parcel to bundle this sandbox, you can find more
-  info about Parcel 
-  <a href="https://parceljs.org" target="_blank" rel="noopener noreferrer">here</a>.
-</div>
-`;
+import "./main.sass";
 
 const NUMS = {
   zero: "0",
@@ -42,45 +34,45 @@ const NUMS = {
 };
 
 function parseInt(string) {
-  if (Number(string) >= 0) {
-    return Number(string);
+  if (Object.keys(NUMS).includes(string)) {
+    return Number(NUMS[string]);
   }
+
   let res = [];
-  let words = string.split(" ");
-
-  console.log(words.length, "words.length");
-
-  if (words.length == 1) {
-    if (words[0].includes("-")) {
-      words[0].split("-").map((el) => res.push(NUMS[el][0]));
-    } else {
-      return Number(NUMS[string]);
-    }
-  }
-  console.log(words, "words");
-
-  if (words.includes("hundred")) {
-    words.map((el, index, arr) => {
-      if (el.includes("-")) {
-        el.split("-").map((word) => {
-          res.push(NUMS[word].toString().charAt(0));
-        });
+  let stringParts = string.split(" ");
+  if (stringParts.includes("hundred")) {
+    stringParts.map((el, index, arr) => {
+      console.log(el, index, arr, arr.length, "ingo");
+      if (index == 0) {
+        res.push(el);
       }
-      if (el == "hundred" && index != arr.length - 1) {
-        if (arr[index + 1].includes("-")) {
-          res.push("");
-        } else {
-          res.push("0");
-        }
-      } else {
-        res.push(NUMS[el]);
+      if (arr.length == 2 && index !== 0) {
+        res.push("zero");
       }
     });
   }
-  return Number(res.join(""));
+
+  console.log(res, "res");
 }
 
-// console.log(parseInt("two hundred forty-six")); //246
-// console.log(parseInt("one hundred two")); //246
-// console.log(parseInt("one")); //246
-console.log(parseInt("one hundred")); //246
+//console.log(parseInt("twenty")); //20
+
+//console.log(parseInt("two hundred")); //246
+//console.log(parseInt("one hundred two")); /102
+//console.log(parseInt("one")); //246
+//console.log(parseInt("one thousand and fifty five")); //1055
+
+function ipsBetween(start, end) {
+  let first = start.split(".");
+  let second = end.split(".");
+
+  let res = 0;
+
+  for (let i = 3; i >= 0; i--) {
+    res += second[i] - first[i];
+  }
+  console.log(res, "res");
+}
+
+console.log(ipsBetween("150.0.0.0", "150.0.0.1")); // 1
+console.log(ipsBetween("10.11.12.13", "10.11.13.0")); // 243
